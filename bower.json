@@ -8,6 +8,7 @@
   "description": "Lightweight JavaScript UI library for creating mobile webapps that behave like native apps, sacrificing neither performance nor polish",
   "main": [
     "kick-all.js",
+    "dist/app.css",
   ],
   "moduleType": [
     "globals"
