@@ -1,4 +1,4 @@
-App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Events, Metrics, Scroll) {
+KikApp._Pages = function (window, document, Clickable, Scrollable, App, Utils, Events, Metrics, Scroll) {
 	var PAGE_NAME        = 'data-page',
 		PAGE_CLASS       = 'app-page',
 		APP_LOADED       = 'app-loaded',
@@ -31,7 +31,7 @@ App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Even
 	}
 
 
-	App.add = function (pageName, page) {
+	KikApp.add = function (pageName, page) {
 		if (typeof pageName !== 'string') {
 			page     = pageName;
 			pageName = undefined;
@@ -44,7 +44,7 @@ App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Even
 		addPage(page, pageName);
 	};
 
-	App.controller = function (pageName, controller, cleanup) {
+	KikApp.controller = function (pageName, controller, cleanup) {
 		if (typeof pageName !== 'string') {
 			throw TypeError('page name must be a string, got ' + pageName);
 		}
@@ -72,9 +72,9 @@ App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Even
 			addCleanup(pageName, cleanup);
 		}
 	};
-	App.populator = App.controller; // backwards compat
+	KikApp.populator = KikApp.controller; // backwards compat
 
-	App.generate = function (pageName, args) {
+	KikApp.generate = function (pageName, args) {
 		if (typeof pageName !== 'string') {
 			throw TypeError('page name must be a string, got ' + pageName);
 		}
@@ -94,7 +94,7 @@ App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Even
 		return generatePage(pageName, args);
 	};
 
-	App.destroy = function (page) {
+	KikApp.destroy = function (page) {
 		if ( !Utils.isNode(page) ) {
 			throw TypeError('page node must be a DOM node, got ' + page);
 		}
@@ -102,8 +102,8 @@ App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Even
 		return destroyPage(page);
 	};
 
-	App._layout             = triggerPageSizeFix;
-	App._enableIOSStatusBar = enableIOSStatusBar;
+	KikApp._layout             = triggerPageSizeFix;
+	KikApp._enableIOSStatusBar = enableIOSStatusBar;
 
 
 	return {
@@ -310,10 +310,10 @@ App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Even
 					}
 
 					if (back) {
-						App.back(finish);
+						KikApp.back(finish);
 					}
 					else if (target) {
-						App.load(target, args, {}, finish);
+						KikApp.load(target, args, {}, finish);
 					}
 
 					function finish () {
@@ -391,16 +391,16 @@ App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Even
 		setTimeout(triggerPageSizeFix, 0);
 
 		window.addEventListener('online', function () {
-			if (App._Stack) {
-				Utils.forEach(App._Stack.get(), function (pageInfo) {
+			if (KikApp._Stack) {
+				Utils.forEach(KikApp._Stack.get(), function (pageInfo) {
 					pageInfo[2].online = true;
 					firePageEvent(pageInfo[2], pageInfo[3], EVENTS.ONLINE);
 				});
 			}
 		}, false);
 		window.addEventListener('offline', function () {
-			if (App._Stack) {
-				Utils.forEach(App._Stack.get(), function (pageInfo) {
+			if (KikApp._Stack) {
+				Utils.forEach(KikApp._Stack.get(), function (pageInfo) {
 					pageInfo[2].online = false;
 					firePageEvent(pageInfo[2], pageInfo[3], EVENTS.OFFLINE);
 				});
@@ -411,8 +411,8 @@ App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Even
 	function triggerPageSizeFix () {
 		fixContentHeight();
 		var pageData;
-		if (App._Stack) {
-			pageData = App._Stack.getCurrent();
+		if (KikApp._Stack) {
+			pageData = KikApp._Stack.getCurrent();
 		}
 		if (pageData) {
 			firePageEvent(pageData[2], pageData[3], EVENTS.LAYOUT);
@@ -426,8 +426,8 @@ App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Even
 
 	function fixContentHeight (page) {
 		if ( !page ) {
-			if (App._Navigation) {
-				page = App._Navigation.getCurrentNode();
+			if (KikApp._Navigation) {
+				page = KikApp._Navigation.getCurrentNode();
 			}
 			if ( !page ) {
 				return;
@@ -488,4 +488,4 @@ App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Even
 			setTimeout(triggerPageSizeFix, 6);
 		});
 	}
-}(window, document, Clickable, Scrollable, App, App._Utils, App._Events, App._Metrics, App._Scroll);
+}(window, document, Clickable, Scrollable, App, KikApp._Utils, KikApp._Events, KikApp._Metrics, KikApp._Scroll);

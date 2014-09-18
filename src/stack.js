@@ -1,14 +1,14 @@
-App._Stack = function (window, document, App, Utils, Scroll, Pages) {
+KikApp._Stack = function (window, document, App, Utils, Scroll, Pages) {
 	var STACK_KEY  = '__APP_JS_STACK__' + window.location.pathname,
 		STACK_TIME = '__APP_JS_TIME__'  + window.location.pathname;
 
 	var stack = [];
 
-	App.getStack = function () {
+	KikApp.getStack = function () {
 		return fetchStack();
 	};
 
-	App.getPage = function (index) {
+	KikApp.getPage = function (index) {
 		var stackSize = stack.length - 1;
 		switch (typeof index) {
 			case 'undefined':
@@ -28,7 +28,7 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
 		return fetchPage(index);
 	};
 
-	App.removeFromStack = function (startIndex, endIndex) {
+	KikApp.removeFromStack = function (startIndex, endIndex) {
 		// minus 1 because last item on stack is current page (which is untouchable)
 		var stackSize = stack.length - 1;
 		switch (typeof startIndex) {
@@ -68,7 +68,7 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
 		removeFromStack(startIndex, endIndex);
 	};
 
-	App.addToStack = function (index, newPages) {
+	KikApp.addToStack = function (index, newPages) {
 		// minus 1 because last item on stack is current page (which is untouchable)
 		var stackSize = stack.length - 1;
 		switch (typeof index) {
@@ -123,15 +123,15 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
 		addToStack(index, newPages);
 	};
 
-	App.saveStack = function () {
+	KikApp.saveStack = function () {
 		saveStack();
 	};
 
-	App.destroyStack = function () {
+	KikApp.destroyStack = function () {
 		destroyStack();
 	};
 
-	App.restore = setupRestoreFunction();
+	KikApp.restore = setupRestoreFunction();
 
 	return {
 		get        : fetchStack ,
@@ -220,7 +220,7 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
 	}
 
 	function removeFromStack (startIndex, endIndex) {
-		App._Navigation.enqueue(function (finish) {
+		KikApp._Navigation.enqueue(function (finish) {
 			removeFromStackNow(startIndex, endIndex);
 			finish();
 		});
@@ -257,7 +257,7 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
 	}
 
 	function addToStack (index, newPages) {
-		App._Navigation.enqueue(function (finish) {
+		KikApp._Navigation.enqueue(function (finish) {
 			addToStackNow(index, newPages);
 			finish();
 		});
@@ -327,7 +327,7 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
 			saveStack();
 
 			try {
-				App.load(lastPage[0], lastPage[1], lastPage[2], callback);
+				KikApp.load(lastPage[0], lastPage[1], lastPage[2], callback);
 			}
 			catch (err) {
 				removeFromStackNow(0, stack.length);
@@ -335,4 +335,4 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
 			}
 		};
 	}
-}(window, document, App, App._Utils, App._Scroll, App._Pages);
+}(window, document, App, KikApp._Utils, KikApp._Scroll, KikApp._Pages);

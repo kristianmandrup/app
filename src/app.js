@@ -1,1 +1,1 @@
-var App = {};
+var KikApp = {};

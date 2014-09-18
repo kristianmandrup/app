@@ -1,13 +1,13 @@
-App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack, Transitions) {
+KikApp._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack, Transitions) {
 	var navQueue = [],
 		navLock  = false,
 		current, currentNode;
 
-	App.current = function () {
+	KikApp.current = function () {
 		return current;
 	};
 
-	App.load = function (pageName, args, options, callback) {
+	KikApp.load = function (pageName, args, options, callback) {
 		if (typeof pageName !== 'string') {
 			throw TypeError('page name must be a string, got ' + pageName);
 		}
@@ -50,7 +50,7 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
 		return loadPage(pageName, args, options, callback);
 	};
 
-	App.back = function (pageName, callback) {
+	KikApp.back = function (pageName, callback) {
 		switch (typeof pageName) {
 			case 'function':
 				callback = pageName;
@@ -73,7 +73,7 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
 		return navigateBack(pageName, callback);
 	};
 
-	App.pick = function (pageName, args, options, loadCallback, callback) {
+	KikApp.pick = function (pageName, args, options, loadCallback, callback) {
 		if (typeof pageName !== 'string') {
 			throw TypeError('page name must be a string, got ' + pageName);
 		}
@@ -195,7 +195,7 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
 			Pages.populateBackButton(page, oldNode || restoreNode);
 
 			if ( !current ) {
-				App.restore = null;
+				KikApp.restore = null;
 				document.body.appendChild(page);
 				Pages.fire(pageManager, page, Pages.EVENTS.LAYOUT);
 				updatePageData();
@@ -274,7 +274,7 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
 				throw Error(backPageName+' is not currently in the stack, cannot go back to it');
 			}
 			if (index !== stack.length-2) {
-				App.removeFromStack(index+1);
+				KikApp.removeFromStack(index+1);
 			}
 		}
 
@@ -391,4 +391,4 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
 			document.body.removeChild(clickBlocker);
 		});
 	}
-}(window, document, App, App._Dialog, App._Scroll, App._Pages, App._Stack, App._Transitions);
+}(window, document, App, KikApp._Dialog, KikApp._Scroll, KikApp._Pages, KikApp._Stack, KikApp._Transitions);

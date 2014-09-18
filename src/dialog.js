@@ -1,10 +1,10 @@
-App._Dialog = function (window, document, Clickable, App, Utils) {
+KikApp._Dialog = function (window, document, Clickable, App, Utils) {
 	var DIALOG_INDICATOR_CLASS = 'app-dialog-visible';
 
 	var currentCallback,
 		dialogQueue;
 
-	App.dialog = function (options, callback) {
+	KikApp.dialog = function (options, callback) {
 		if ((typeof options !== 'object') || (options === null)) {
 			throw TypeError('dialog options must be an object, got ' + options);
 		}
@@ -54,15 +54,15 @@ App._Dialog = function (window, document, Clickable, App, Utils) {
 		return showDialog(options, callback);
 	};
 
-	App.dialog.close = function (status) {
+	KikApp.dialog.close = function (status) {
 		return closeDialog(status || false);
 	};
 
-	App.dialog.status = function () {
+	KikApp.dialog.status = function () {
 		return hasDialog();
 	};
 
-	return App.dialog;
+	return KikApp.dialog;
 
 
 
@@ -237,4 +237,4 @@ App._Dialog = function (window, document, Clickable, App, Utils) {
 		args.push(true);
 		showDialog.apply(window, args);
 	}
-}(window, document, Clickable, App, App._Utils);
+}(window, document, Clickable, App, KikApp._Utils);

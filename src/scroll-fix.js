@@ -3,7 +3,7 @@
 (function (document, App, Utils) {
 	var touches = {};
 
-	if (App.platform === 'ios' && App.platformVersion >= 5 && !Utils.os.faked && (typeof kik !== 'object' || kik === null || !kik.enabled)) {
+	if (KikApp.platform === 'ios' && KikApp.platformVersion >= 5 && !Utils.os.faked && (typeof kik !== 'object' || kik === null || !kik.enabled)) {
 		bindListeners();
 	}
 	return;
@@ -108,4 +108,4 @@
 			}
 		}
 	}
-})(document, App, App._Utils);
+})(document, App, KikApp._Utils);

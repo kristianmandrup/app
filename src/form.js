@@ -1,8 +1,8 @@
-App._Form = function (window, document, App, Utils) {
-	App.form = function (form, callback) {
+KikApp._Form = function (window, document, App, Utils) {
+	KikApp.form = function (form, callback) {
 		if ( Utils.isjQueryElem(form) ) {
 			form.each(function () {
-				App.form(this, callback);
+				KikApp.form(this, callback);
 			});
 			return;
 		}
@@ -120,4 +120,4 @@ App._Form = function (window, document, App, Utils) {
 			});
 		}
 	}
-}(window, document, App, App._Utils);
+}(window, document, App, KikApp._Utils);

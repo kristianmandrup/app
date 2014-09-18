@@ -1,7 +1,7 @@
-App._Metrics = function (window, App) {
+KikApp._Metrics = function (window, App) {
 	var analyticsEnabled = false;
 
-	App.enableGoogleAnalytics = function () {
+	KikApp.enableGoogleAnalytics = function () {
 		enableGoogleAnalytics();
 	};
 

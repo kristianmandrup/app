@@ -1,4 +1,4 @@
-App._Transitions = function (window, document, Swapper, App, Utils, Scroll, Pages, Stack) {
+KikApp._Transitions = function (window, document, Swapper, App, Utils, Scroll, Pages, Stack) {
 	var TRANSITION_CLASS                  = 'app-transition',
 		DEFAULT_TRANSITION_IOS            = 'slide-left',
 		DEFAULT_TRANSITION_ANDROID        = 'implode-out',
@@ -64,7 +64,7 @@ App._Transitions = function (window, document, Swapper, App, Utils, Scroll, Page
 	checkForDragTransitionMetaTag();
 
 
-	App.setDefaultTransition = function (transition) {
+	KikApp.setDefaultTransition = function (transition) {
 		if (typeof transition === 'object') {
 			switch (Utils.os.name) {
 				case 'android':
@@ -101,15 +101,15 @@ App._Transitions = function (window, document, Swapper, App, Utils, Scroll, Page
 		setDefaultTransition(transition);
 	};
 
-	App.getDefaultTransition = function () {
+	KikApp.getDefaultTransition = function () {
 		return defaultTransition;
 	};
 
-	App.getReverseTransition = function () {
+	KikApp.getReverseTransition = function () {
 		return reverseTransition;
 	};
 
-	App.enableDragTransition = function () {
+	KikApp.enableDragTransition = function () {
 		allowDragging();
 	};
 
@@ -219,9 +219,9 @@ App._Transitions = function (window, document, Swapper, App, Utils, Scroll, Page
 			oldPage.parentNode.appendChild(page);
 		}
 
-		if (App._Pages) {
-			App._Pages.fixContent(oldPage);
-			App._Pages.fixContent(page);
+		if (KikApp._Pages) {
+			KikApp._Pages.fixContent(oldPage);
+			KikApp._Pages.fixContent(page);
 		}
 
 		if (Utils.os.version < 7) {
@@ -470,7 +470,7 @@ App._Transitions = function (window, document, Swapper, App, Utils, Scroll, Page
 
 			e.preventDefault();
 
-			App._Navigation.enqueue(function (unlock) {
+			KikApp._Navigation.enqueue(function (unlock) {
 				navigationLock = unlock;
 				//TODO: what if transition is already over?
 			}, true);
@@ -611,7 +611,7 @@ App._Transitions = function (window, document, Swapper, App, Utils, Scroll, Page
 					Pages.finishDestruction(currentPage[0], currentPage[2], currentPage[3], currentPage[1]);
 
 					Stack.pop();
-					App._Navigation.update();
+					KikApp._Navigation.update();
 				}
 
 				dragLock = null;
@@ -649,4 +649,4 @@ App._Transitions = function (window, document, Swapper, App, Utils, Scroll, Page
 			dragLock = null;
 		}
 	}
-}(window, document, Swapper, App, App._Utils, App._Scroll, App._Pages, App._Stack);
+}(window, document, Swapper, App, KikApp._Utils, KikApp._Scroll, KikApp._Pages, KikApp._Stack);

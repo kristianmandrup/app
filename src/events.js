@@ -1,4 +1,4 @@
-App._Events = function (Utils) {
+KikApp._Events = function (Utils) {
 	var APPJS_EVENTS_VAR = '__appjsCustomEventing';
 
 	var hasCustomEvents = supportsCustomEventing();
@@ -110,4 +110,4 @@ App._Events = function (Utils) {
 			return elem.dispatchEvent(evt);
 		}
 	}
-}(App._Utils);
+}(KikApp._Utils);

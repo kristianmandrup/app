@@ -1,4 +1,4 @@
-App._Utils = function (window, document, App) {
+KikApp._Utils = function (window, document, App) {
 	var query = function (queryString) {
 		var re           = /([^&=]+)=([^&]+)/g,
 			decodedSpace = /\+/g;
@@ -295,8 +295,8 @@ App._Utils = function (window, document, App) {
 
 
 
-	App.platform        = os.name;
-	App.platformVersion = os.version;
+	KikApp.platform        = os.name;
+	KikApp.platformVersion = os.version;
 
 	return {
 		query         : query         ,

@@ -1,4 +1,4 @@
-App._Scroll = function (Scrollable, Utils) {
+KikApp._Scroll = function (Scrollable, Utils) {
 	var TAGS = {
 			APP_CONTENT    : 'app-content' ,
 			APP_SCROLLABLE : 'app-scrollable' ,
@@ -11,14 +11,14 @@ App._Scroll = function (Scrollable, Utils) {
 		},
 		PAGE_MANAGER_VAR = '__appjsPageManager';
 
-	App.infiniteScroll = function (elem, options, generator) {
+	KikApp.infiniteScroll = function (elem, options, generator) {
 		if ( Utils.isjQueryElem(elem) ) {
 			if (elem.length) {
 				var l = elem.length-1;
 				for (var i=0; i<l; i++) {
-					App.infiniteScroll(elem[i], options, generator);
+					KikApp.infiniteScroll(elem[i], options, generator);
 				}
-				return App.infiniteScroll(elem[l], options, generator);
+				return KikApp.infiniteScroll(elem[l], options, generator);
 			} else {
 				return;
 			}
@@ -238,4 +238,4 @@ App._Scroll = function (Scrollable, Utils) {
 			return page[PAGE_MANAGER_VAR];
 		}
 	}
-}(Scrollable, App._Utils);
+}(Scrollable, KikApp._Utils);
